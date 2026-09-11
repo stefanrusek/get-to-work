@@ -54,3 +54,7 @@ Automation hook: while the app runs, append JSON lines to
 Actions: `status`, `events`, `sync`, `grant-access`, `test-alert`, `close-alert`, `alert-key` (`{"key":"Escape"}`),
 `show-next`, `pause` (`{"minutes":30}`), `resume`, `settings`, `set` (`{"settings":{…}}`), `state`, `reset-state`,
 `open-settings`, `create-test-event` (`{"inMinutes":2}`), `delete-event` (`{"id":…}`), `quit`.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
