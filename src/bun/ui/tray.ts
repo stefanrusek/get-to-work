@@ -135,7 +135,7 @@ export class TrayController {
 	private lastMenu = "";
 
 	constructor(onAction: (a: TrayAction) => void) {
-		this.tray = new Tray({ title: "GTW" });
+		this.tray = new Tray({ image: "views://icons/menubarTemplate.png", template: true, width: 18, height: 18 });
 		this.tray.on("tray-clicked", (event: unknown) => {
 			const e = event as { data?: { action?: string } };
 			const a = parseTrayAction(e?.data?.action);
@@ -146,7 +146,7 @@ export class TrayController {
 	update(model: TrayModel): void {
 		const title = trayTitle(model);
 		if (title !== this.lastTitle) {
-			this.tray.setTitle(title ? `GTW ${title}` : "GTW");
+			this.tray.setTitle(title ? ` ${title}` : "");
 			this.lastTitle = title;
 		}
 		const menu = buildMenu(model);

@@ -29,8 +29,11 @@ export default {
 			"src/views/settings/index.html": "views/settings/index.html",
 			"src/views/settings/index.css": "views/settings/index.css",
 			"build/native/libgtw.dylib": "native/libgtw.dylib",
+			"assets/icons/menubarTemplate.png": "views/icons/menubarTemplate.png",
+			"assets/icons/menubarTemplate@2x.png": "views/icons/menubarTemplate@2x.png",
 		},
 		mac: {
+			icons: "icon.iconset",
 			bundleCEF: false,
 			codesign: false,
 			createDmg: false,
