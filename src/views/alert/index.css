@@ -1,0 +1,98 @@
+:root {
+	--bg: #0f172a;
+	--fg: #f8fafc;
+	--muted: #94a3b8;
+	--accent: #22c55e;
+	--accent-fg: #052e16;
+	--btn: rgba(255, 255, 255, 0.12);
+	--btn-hover: rgba(255, 255, 255, 0.2);
+	--calendar: #3b82f6;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+	background: var(--bg);
+	color: var(--fg);
+	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+	-webkit-user-select: none;
+	user-select: none;
+	overflow: hidden;
+	cursor: default;
+}
+.alert {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 6vh 8vw;
+	gap: 2vh;
+	border-top: 1.2vh solid var(--calendar);
+	background: radial-gradient(ellipse at top, rgba(255,255,255,0.06), transparent 60%), var(--bg);
+}
+.eyebrow {
+	font-size: 2.2vh;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.title {
+	font-size: clamp(36px, 8vh, 120px);
+	font-weight: 700;
+	line-height: 1.05;
+	margin: 0;
+	max-width: 90vw;
+	overflow-wrap: anywhere;
+}
+.when { font-size: 3.5vh; color: var(--muted); }
+.countdown {
+	font-size: clamp(48px, 16vh, 260px);
+	font-weight: 800;
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+	letter-spacing: -0.02em;
+}
+.countdown.now { color: var(--accent); }
+.location {
+	font-size: 2.6vh;
+	color: var(--muted);
+	max-width: 70vw;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.actions { display: flex; gap: 2vh; flex-wrap: wrap; justify-content: center; margin-top: 2vh; }
+.btn {
+	font: inherit;
+	font-size: 2.8vh;
+	padding: 1.6vh 3.2vh;
+	border-radius: 1.6vh;
+	border: none;
+	background: var(--btn);
+	color: var(--fg);
+	cursor: pointer;
+}
+.btn:hover { background: var(--btn-hover); }
+.btn.primary { background: var(--accent); color: var(--accent-fg); font-weight: 700; }
+.btn.primary:hover { filter: brightness(1.1); }
+kbd {
+	font-family: inherit;
+	font-size: 0.7em;
+	opacity: 0.7;
+	margin-left: 0.6em;
+	padding: 0.1em 0.5em;
+	border-radius: 0.4em;
+	background: rgba(0,0,0,0.25);
+}
+.footer { margin-top: 3vh; }
+.link {
+	font: inherit;
+	font-size: 2vh;
+	color: var(--muted);
+	background: none;
+	border: none;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.link:hover { color: var(--fg); }

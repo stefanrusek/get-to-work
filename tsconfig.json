@@ -1,0 +1,25 @@
+{
+	"extends": "./.hutch/devkit/tsconfig.json",
+	"compilerOptions": {
+		"lib": ["ESNext", "DOM"],
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleDetection": "force",
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"types": ["bun"]
+	},
+	"include": ["src/**/*", "installer/**/*", "scripts/**/*", "tests/**/*"],
+	"exclude": ["node_modules", "dist", "build"]
+}

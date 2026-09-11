@@ -1,0 +1,30 @@
+:root { color-scheme: light dark; --bg: #f5f5f7; --fg: #1d1d1f; --muted: #6e6e73; --card: #fff; --accent: #0a84ff; --border: #d2d2d7; }
+@media (prefers-color-scheme: dark) { :root { --bg: #1e1e1e; --fg: #f5f5f7; --muted: #a1a1a6; --card: #2a2a2a; --border: #3a3a3c; } }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; font-size: 13px; background: var(--bg); color: var(--fg); -webkit-user-select: none; user-select: none; }
+.tabs { display: flex; gap: 4px; padding: 10px 12px; border-bottom: 1px solid var(--border); background: var(--card); position: sticky; top: 0; }
+.tabs button { font: inherit; border: none; background: transparent; color: var(--muted); padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+.tabs button.active { background: var(--accent); color: #fff; }
+main { padding: 16px 20px 40px; }
+.panel { display: none; }
+.panel.active { display: block; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 18px 0 8px; }
+.row { display: flex; align-items: center; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.hint { color: var(--muted); margin: 6px 0; }
+.num { width: 64px; }
+.text { flex: 1; min-width: 200px; }
+input[type="text"], input[type="number"], select { font: inherit; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--fg); }
+.btn { font: inherit; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); color: var(--fg); cursor: pointer; }
+.btn:hover { border-color: var(--accent); }
+.btn.danger { color: #ff453a; }
+.pill { padding: 3px 10px; border-radius: 999px; background: var(--border); font-weight: 600; }
+.pill.ok { background: #34c759; color: #fff; }
+.pill.bad { background: #ff453a; color: #fff; }
+.list { display: flex; flex-direction: column; gap: 4px; }
+.item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+.item .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item .sub { color: var(--muted); font-size: 12px; }
+.swatch { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.item.focus { outline: 2px solid var(--accent); }
+.toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 8px 14px; border-radius: 8px; }
+code { background: var(--border); padding: 1px 5px; border-radius: 4px; }

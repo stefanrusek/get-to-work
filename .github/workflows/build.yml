@@ -1,0 +1,77 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: macOS arm64 installer
+    runs-on: macos-14
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Bun (installer compiler)
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: .bun-version
+
+      - name: Install hutch (Electrobun CLI)
+        run: |
+          curl -fsSL https://hutch.blackboard.sh/hutch/install.sh | sh
+          echo "$HOME/.hutch/bin" >> "$GITHUB_PATH"
+
+      - name: Resolve pinned hutch/cottontail/electrobun toolchain
+        run: |
+          hutch upgrade canary
+          hutch --version
+          hutch electrobun prepare
+
+      - name: Install dependencies
+        run: hutch install
+
+      - name: Typecheck
+        run: bunx -p typescript@5.9.3 tsc --noEmit -p .
+
+      - name: Unit tests
+        run: bun test
+
+      - name: Build native bridge
+        run: bash scripts/build-native.sh
+
+      - name: Build app and compile installer
+        run: bun scripts/package-installer.ts
+
+      - name: Verify installer
+        run: |
+          codesign --verify --strict dist/get-to-work
+          ./dist/get-to-work --version
+          ./dist/get-to-work help | head -3
+          ls -la dist
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: get-to-work-macos-arm64
+          path: |
+            dist/get-to-work
+            dist/get-to-work.sha256
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/get-to-work
+            dist/get-to-work.sha256
+          generate_release_notes: true

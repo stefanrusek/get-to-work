@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Get To Work Settings</title>
+	<link rel="stylesheet" href="index.css" />
+</head>
+<body>
+	<nav class="tabs" id="tabs">
+		<button data-tab="calendars" class="active">Calendars</button>
+		<button data-tab="alerts">Alerts</button>
+		<button data-tab="filters">Filters</button>
+		<button data-tab="sounds">Sounds</button>
+		<button data-tab="shortcuts">Shortcuts</button>
+		<button data-tab="events">Events</button>
+		<button data-tab="about">About</button>
+	</nav>
+	<main id="main">
+		<section data-panel="calendars" class="panel active">
+			<h2>Calendar access</h2>
+			<div class="row"><span id="auth-status" class="pill">…</span><button id="grant" class="btn">Grant access</button></div>
+			<p class="hint">Get To Work reads events from the calendars configured in macOS (iCloud, Google, Exchange…).</p>
+			<h2>Alert for these calendars</h2>
+			<div id="calendars" class="list"></div>
+		</section>
+		<section data-panel="alerts" class="panel">
+			<h2>Timing</h2>
+			<label class="row">Show the alert <input id="leadMinutes" type="number" min="0" max="1440" class="num" /> minutes before the event</label>
+			<label class="row"><input id="alertAtStart" type="checkbox" /> Also alert when the event starts</label>
+			<label class="row"><input id="dismissWhenEventEnds" type="checkbox" /> Auto-dismiss when the event ends</label>
+			<h2>Snooze</h2>
+			<label class="row">Snooze presets (minutes, comma separated) <input id="snoozePresets" type="text" class="text" placeholder="1, 5" /></label>
+			<div class="row"><button id="testAlert" class="btn">Show a test alert</button></div>
+		</section>
+		<section data-panel="filters" class="panel">
+			<h2>Skip events that are…</h2>
+			<label class="row"><input id="f-skipAllDay" type="checkbox" /> All-day</label>
+			<label class="row"><input id="f-skipDeclined" type="checkbox" /> Declined by me</label>
+			<label class="row"><input id="f-skipTentative" type="checkbox" /> Tentative</label>
+			<label class="row"><input id="f-skipCanceled" type="checkbox" /> Canceled</label>
+			<h2>Only alert for events that…</h2>
+			<label class="row"><input id="f-requireAttendees" type="checkbox" /> Have other attendees</label>
+			<label class="row"><input id="f-requireJoinLink" type="checkbox" /> Have a video call link</label>
+			<h2>Keywords</h2>
+			<label class="row">Exclude when title/location/notes contain <input id="f-excludeKeywords" type="text" class="text" placeholder="focus, lunch" /></label>
+			<label class="row">Only include when they contain <input id="f-includeKeywords" type="text" class="text" placeholder="leave empty for all" /></label>
+		</section>
+		<section data-panel="sounds" class="panel">
+			<label class="row"><input id="s-enabled" type="checkbox" /> Play a sound when an alert appears</label>
+			<label class="row">Sound <select id="s-path" class="select"></select> <button id="s-pick" class="btn">Choose file…</button> <button id="s-preview" class="btn">Preview</button></label>
+			<label class="row">Volume <input id="s-volume" type="range" min="0" max="1" step="0.05" /></label>
+		</section>
+		<section data-panel="shortcuts" class="panel">
+			<p class="hint">Electron-style accelerators, e.g. <code>Control+Alt+Command+N</code>. Leave empty to disable.</p>
+			<label class="row">Show next alert now <input id="k-showNext" type="text" class="text" /></label>
+			<label class="row">Pause / resume alerts <input id="k-togglePause" type="text" class="text" /></label>
+		</section>
+		<section data-panel="events" class="panel">
+			<h2>Upcoming events</h2>
+			<p class="hint">Customize a single event: change its lead time or exclude it from alerts.</p>
+			<div id="upcoming" class="list"></div>
+			<h2>Saved overrides</h2>
+			<div id="overrides" class="list"></div>
+		</section>
+		<section data-panel="about" class="panel">
+			<h2>Get To Work</h2>
+			<p>Version <span id="version"></span></p>
+			<p class="hint">Unmissable full-screen meeting alerts on every display. Built with Bun + Electrobun.</p>
+			<p class="hint">Starts at login via a LaunchAgent installed by the <code>get-to-work</code> installer. Run <code>get-to-work uninstall</code> to remove.</p>
+		</section>
+	</main>
+	<div id="toast" class="toast" hidden></div>
+	<script type="module" src="index.js"></script>
+</body>
+</html>

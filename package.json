@@ -1,0 +1,17 @@
+{
+	"name": "get-to-work",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Unmissable full-screen meeting alerts for macOS (In Your Face clone) built with Bun + Electrobun",
+	"scripts": {
+		"dev": "hutch run dev",
+		"build": "hutch run build",
+		"build:native": "bash scripts/build-native.sh",
+		"test": "bun test",
+		"release": "bun scripts/package-installer.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	}
+}
